@@ -1,0 +1,1047 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d18">
+<title>HESHAM AI STUDIO</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap');
+
+:root{
+  --bg:#080d18;
+  --panel:#0e1626;
+  --card:#111d30;
+  --blue:#168cff;
+  --blue2:#36b4ff;
+  --line:#20314a;
+  --text:#f4f8ff;
+  --muted:#8da1bc;
+  --green:#35d49a;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Cairo',Arial,sans-serif;
+  min-height:100vh;
+}
+
+button,input,textarea,select{font-family:inherit}
+button{cursor:pointer}
+
+.app{display:flex;min-height:100vh}
+
+/* SIDEBAR */
+
+.sidebar{
+  width:255px;
+  background:#0b1220;
+  border-left:1px solid var(--line);
+  position:fixed;
+  right:0;top:0;bottom:0;
+  padding:24px 16px;
+  z-index:10;
+  overflow-y:auto;
+}
+
+.logo{
+  padding:8px 10px 27px;
+  font-size:23px;
+  font-weight:900;
+  letter-spacing:-1px;
+}
+
+.logo span{color:var(--blue2)}
+
+.logo small{
+  display:block;
+  color:var(--muted);
+  font-size:9px;
+  letter-spacing:3px;
+  font-weight:500;
+}
+
+.nav-label{
+  color:#60758e;
+  font-size:10px;
+  padding:15px 12px 8px;
+}
+
+.nav a{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:11px 13px;
+  margin:4px 0;
+  border-radius:9px;
+  color:#a9bad0;
+  text-decoration:none;
+  font-size:12px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.nav a:hover,.nav a.active{
+  color:white;
+  background:#142b48;
+}
+
+.nav a.active{
+  border-right:3px solid var(--blue);
+}
+
+.nav-icon{
+  width:23px;
+  text-align:center;
+  font-size:17px;
+}
+
+.side-bottom{
+  margin-top:30px;
+  padding:15px;
+  border:1px solid var(--line);
+  background:#101d30;
+  border-radius:12px;
+}
+
+.side-bottom p{
+  font-size:11px;
+  color:var(--muted);
+  line-height:2;
+}
+
+/* MAIN */
+
+.main{
+  margin-right:255px;
+  width:calc(100% - 255px);
+  padding:24px 4%;
+}
+
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.topbar h2{font-size:17px}
+
+.top-actions{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.status{
+  font-size:10px;
+  color:var(--green);
+  background:#123127;
+  padding:8px 12px;
+  border-radius:20px;
+}
+
+.avatar{
+  width:38px;height:38px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#0875db,#38b9ff);
+  border-radius:11px;
+  font-weight:900;
+}
+
+/* HERO */
+
+.hero{
+  margin-top:30px;
+  padding:45px 35px;
+  border:1px solid #21446b;
+  border-radius:19px;
+  background:
+  radial-gradient(ellipse at 5% 5%,#147ee044,transparent 50%),
+  linear-gradient(120deg,#101f36,#0b1424);
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:after{
+  content:"✦";
+  position:absolute;
+  left:9%;
+  top:10%;
+  color:#248fff;
+  font-size:110px;
+  opacity:.12;
+}
+
+.hero-tag{
+  color:#50baff;
+  font-size:11px;
+  letter-spacing:2px;
+}
+
+.hero h1{
+  font-size:clamp(27px,4vw,43px);
+  line-height:1.55;
+  margin:15px 0;
+}
+
+.hero h1 span{
+  color:#32a9ff;
+}
+
+.hero p{
+  color:#a4b5cb;
+  font-size:13px;
+  line-height:2;
+  max-width:570px;
+}
+
+.primary{
+  background:linear-gradient(110deg,#0878ed,#21aaff);
+  color:white;
+  border:0;
+  border-radius:9px;
+  padding:12px 23px;
+  font-weight:700;
+  box-shadow:0 5px 22px #078cff33;
+}
+
+.hero .primary{margin-top:22px}
+
+/* STATS */
+
+.stats{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+  margin:22px 0 30px;
+}
+
+.stat{
+  background:var(--panel);
+  border:1px solid var(--line);
+  padding:17px;
+  border-radius:13px;
+}
+
+.stat small{
+  color:var(--muted);
+  font-size:11px;
+}
+
+.stat strong{
+  display:block;
+  font-size:24px;
+  margin-top:7px;
+}
+
+/* SECTIONS */
+
+.section{
+  margin-top:35px;
+  scroll-margin-top:20px;
+}
+
+.section-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  margin-bottom:17px;
+}
+
+.section-head h2{font-size:18px}
+
+.section-head span{
+  color:#55b6ff;
+  font-size:11px;
+}
+
+/* SEARCH */
+
+.search-box{
+  display:flex;
+  gap:8px;
+  background:#101a2b;
+  border:1px solid var(--line);
+  padding:7px;
+  border-radius:11px;
+  margin-bottom:20px;
+}
+
+.search-box input{
+  flex:1;
+  min-width:0;
+  border:0;
+  outline:0;
+  background:none;
+  color:white;
+  padding:9px;
+}
+
+/* FILTERS */
+
+.filters{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-bottom:18px;
+}
+
+.filter{
+  background:#101a2b;
+  border:1px solid var(--line);
+  color:#aabbd0;
+  padding:8px 15px;
+  border-radius:8px;
+  font-size:11px;
+}
+
+.filter.active{
+  background:#125ca5;
+  color:white;
+  border-color:#258fff;
+}
+
+/* TOOL CARDS */
+
+.tools-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:14px;
+}
+
+.tool{
+  background:linear-gradient(145deg,#121f33,#0e1726);
+  border:1px solid var(--line);
+  padding:19px;
+  border-radius:14px;
+  transition:.25s;
+  min-width:0;
+}
+
+.tool:hover{
+  transform:translateY(-4px);
+  border-color:#258fff;
+  box-shadow:0 9px 30px #0878ed18;
+}
+
+.tool-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.tool-icon{
+  width:46px;height:46px;
+  border-radius:12px;
+  background:#142e4c;
+  display:grid;
+  place-items:center;
+  font-size:22px;
+}
+
+.tool-tag{
+  font-size:9px;
+  color:#55baff;
+  background:#102b47;
+  padding:5px 8px;
+  border-radius:20px;
+}
+
+.tool h3{
+  font-size:13px;
+  margin:16px 0 7px;
+}
+
+.tool p{
+  color:var(--muted);
+  font-size:10px;
+  line-height:2;
+  min-height:40px;
+}
+
+.tool button{
+  margin-top:14px;
+  width:100%;
+  padding:10px;
+  background:#132a46;
+  border:1px solid #24496c;
+  color:#d9edff;
+  border-radius:8px;
+  font-size:11px;
+}
+
+.tool button:hover{
+  background:#1264b2;
+}
+
+/* WORKSPACE */
+
+.workspace{
+  display:none;
+  margin-top:35px;
+  padding:23px;
+  border:1px solid #27527e;
+  background:#0e1929;
+  border-radius:16px;
+  scroll-margin-top:20px;
+}
+
+.workspace.show{display:block}
+
+.workspace h2{font-size:19px}
+
+.workspace .description{
+  color:var(--muted);
+  font-size:11px;
+  margin-top:8px;
+}
+
+.field-label{
+  display:block;
+  font-size:12px;
+  margin:20px 0 8px;
+  color:#c6d9ed;
+}
+
+textarea{
+  width:100%;
+  min-height:115px;
+  resize:vertical;
+  padding:14px;
+  background:#080f1b;
+  border:1px solid #294362;
+  border-radius:10px;
+  outline:none;
+  color:white;
+  font-size:13px;
+}
+
+textarea:focus{border-color:var(--blue)}
+
+select{
+  width:100%;
+  padding:12px;
+  color:white;
+  background:#080f1b;
+  border:1px solid #294362;
+  border-radius:9px;
+  outline:none;
+}
+
+.upload{
+  display:block;
+  text-align:center;
+  padding:22px;
+  border:2px dashed #315d87;
+  border-radius:11px;
+  margin:14px 0;
+  color:#a8c9e8;
+  font-size:12px;
+  cursor:pointer;
+}
+
+.upload input{display:none}
+
+.preview{
+  display:none;
+  max-width:100%;
+  max-height:280px;
+  border-radius:12px;
+  margin:15px auto;
+}
+
+.workspace-actions{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:15px;
+}
+
+.workspace-actions button{flex:1}
+
+.secondary{
+  background:#16263a;
+  color:white;
+  border:1px solid #294362;
+  padding:12px;
+  border-radius:9px;
+}
+
+.result{
+  display:none;
+  background:#13243a;
+  border:1px solid #244b72;
+  padding:17px;
+  border-radius:10px;
+  margin-top:18px;
+  color:#c8e6ff;
+  font-size:12px;
+  line-height:2;
+}
+
+/* GALLERY */
+
+.gallery{
+  background:#101a2b;
+  border:1px solid var(--line);
+  padding:20px;
+  border-radius:13px;
+}
+
+.gallery p{
+  color:var(--muted);
+  font-size:11px;
+  line-height:2;
+}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:15px;
+}
+
+.gallery-grid img{
+  width:100%;
+  aspect-ratio:1;
+  object-fit:cover;
+  border-radius:9px;
+  border:1px solid var(--line);
+}
+
+/* FOOTER */
+
+footer{
+  border-top:1px solid var(--line);
+  text-align:center;
+  padding:28px;
+  margin-top:45px;
+  color:#72869f;
+  font-size:11px;
+}
+
+/* MOBILE */
+
+@media(max-width:950px){
+  .tools-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:650px){
+
+  .sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+    bottom:auto;
+    padding:10px;
+    border:0;
+    border-bottom:1px solid var(--line);
+  }
+
+  .logo{
+    padding:5px 10px 10px;
+    font-size:20px;
+  }
+
+  .logo small{display:none}
+
+  .nav-label,.side-bottom{display:none}
+
+  .nav{
+    display:flex;
+    overflow-x:auto;
+    gap:5px;
+  }
+
+  .nav a{
+    white-space:nowrap;
+    padding:9px;
+    font-size:10px;
+  }
+
+  .nav-icon{font-size:14px}
+
+  .app{display:block}
+
+  .main{
+    margin:0;
+    width:100%;
+    padding:15px 4%;
+  }
+
+  .hero{padding:28px 19px}
+
+  .stats{gap:7px}
+
+  .stat{padding:11px}
+
+  .stat strong{font-size:18px}
+
+  .tools-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+
+  .tool{padding:13px}
+
+  .tool h3{font-size:11px}
+
+  .tool p{font-size:9px}
+
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+<div class="logo">
+HESHAM <span>AI</span>
+<small>ARTIFICIAL INTELLIGENCE STUDIO</small>
+</div>
+
+<div class="nav-label">القائمة الرئيسية</div>
+
+<nav class="nav">
+<a class="active" href="#home"><span class="nav-icon">⌂</span> الرئيسية</a>
+<a href="#tools"><span class="nav-icon">✧</span> جميع الأدوات</a>
+<a href="#workspace"><span class="nav-icon">◈</span> مساحة العمل</a>
+<a href="#gallery"><span class="nav-icon">▧</span> معرض أعمالي</a>
+</nav>
+
+<div class="nav-label">استوديوهات الإبداع</div>
+
+<nav class="nav">
+<a onclick="openTool('توليد الصور')"><span class="nav-icon">🎨</span> استوديو الصور</a>
+<a onclick="openTool('توليد الفيديو')"><span class="nav-icon">🎬</span> استوديو الفيديو</a>
+<a onclick="openTool('تعديل الصور')"><span class="nav-icon">🪄</span> استوديو التعديل</a>
+<a onclick="openTool('المساعد الذكي')"><span class="nav-icon">🤖</span> المساعد الذكي</a>
+</nav>
+
+<div class="side-bottom">
+<p>✦ HESHAM AI STUDIO</p>
+<p>مساحتك الإبداعية لصناعة المستقبل بالذكاء الاصطناعي.</p>
+</div>
+
+</aside>
+
+<!-- MAIN CONTENT -->
+
+<main class="main">
+
+<header class="topbar">
+<h2>لوحة التحكم</h2>
+
+<div class="top-actions">
+<div class="status">● الواجهة جاهزة</div>
+<div class="avatar">H</div>
+</div>
+</header>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-tag">WELCOME TO HESHAM AI</div>
+
+<h1>
+أطلق العنان لإبداعك مع<br>
+<span>الذكاء الاصطناعي</span>
+</h1>
+
+<p>
+منصة واحدة تجمع أدوات الذكاء الاصطناعي لتوليد الصور،
+وتصميم الفيديوهات، وتحرير المحتوى، وبناء أفكارك الإبداعية.
+</p>
+
+<button class="primary" onclick="openTool('توليد الصور')">
+ابدأ الإبداع الآن ←
+</button>
+
+</section>
+
+<!-- STATS -->
+
+<div class="stats">
+
+<div class="stat">
+<small>الأدوات في المنصة</small>
+<strong>15+</strong>
+</div>
+
+<div class="stat">
+<small>استوديوهات الإبداع</small>
+<strong>04</strong>
+</div>
+
+<div class="stat">
+<small>حالة الواجهة</small>
+<strong style="color:#35d49a">جاهزة</strong>
+</div>
+
+</div>
+
+<!-- TOOLS -->
+
+<section class="section" id="tools">
+
+<div class="section-head">
+<h2>مركز أدوات الذكاء الاصطناعي</h2>
+<span>AI TOOLS CENTER</span>
+</div>
+
+<div class="search-box">
+<input id="search" placeholder="ابحث عن أي أداة...">
+<button class="primary" onclick="searchTools()">بحث</button>
+</div>
+
+<div class="filters">
+<button class="filter active" onclick="filterTools('all',this)">الكل</button>
+<button class="filter" onclick="filterTools('image',this)">الصور</button>
+<button class="filter" onclick="filterTools('video',this)">الفيديو</button>
+<button class="filter" onclick="filterTools('edit',this)">التعديل</button>
+<button class="filter" onclick="filterTools('text',this)">النصوص</button>
+<button class="filter" onclick="filterTools('audio',this)">الصوت</button>
+</div>
+
+<div class="tools-grid" id="toolsGrid">
+
+<div class="tool" data-type="image">
+<div class="tool-top"><div class="tool-icon">🎨</div><span class="tool-tag">IMAGE</span></div>
+<h3>AI Image Generator</h3>
+<p>حوّل الأوصاف النصية إلى صور إبداعية.</p>
+<button onclick="openTool('توليد الصور')">فتح الاستوديو ←</button>
+</div>
+
+<div class="tool" data-type="edit">
+<div class="tool-top"><div class="tool-icon">🪄</div><span class="tool-tag">EDIT</span></div>
+<h3>AI Photo Editor</h3>
+<p>تحرير الصور وتغيير العناصر والتفاصيل.</p>
+<button onclick="openTool('تعديل الصور')">فتح الاستوديو ←</button>
+</div>
+
+<div class="tool" data-type="video">
+<div class="tool-top"><div class="tool-icon">🎬</div><span class="tool-tag">VIDEO</span></div>
+<h3>AI Video Generator</h3>
+<p>إنشاء فيديوهات من النصوص والأفكار.</p>
+<button onclick="openTool('توليد الفيديو')">فتح الاستوديو ←</button>
+</div>
+
+<div class="tool" data-type="edit">
+<div class="tool-top"><div class="tool-icon">✂️</div><span class="tool-tag">EDIT</span></div>
+<h3>Background Remover</h3>
+<p>إزالة خلفية الصور وتفريغ العناصر.</p>
+<button onclick="openTool('إزالة الخلفية')">فتح الأداة ←</button>
+</div>
+
+<div class="tool" data-type="image">
+<div class="tool-top"><div class="tool-icon">🔍</div><span class="tool-tag">IMAGE</span></div>
+<h3>AI Image Upscaler</h3>
+<p>رفع دقة الصور وتحسين التفاصيل.</p>
+<button onclick="openTool('تحسين دقة الصور')">فتح الأداة ←</button>
+</div>
+
+<div class="tool" data-type="image">
+<div class="tool-top"><div class="tool-icon">👤</div><span class="tool-tag">IMAGE</span></div>
+<h3>AI Portrait Studio</h3>
+<p>إنشاء صور شخصية احترافية.</p>
+<button onclick="openTool('الصور الشخصية')">فتح الأداة ←</button>
+</div>
+
+<div class="tool" data-type="text">
+<div class="tool-top"><div class="tool-icon">✍️</div><span class="tool-tag">TEXT</span></div>
+<h3>AI Writer</h3>
+<p>كتابة المقالات والإعلانات والمحتوى.</p>
+<button onclick="openTool('الكتابة الذكية')">فتح الأداة ←</button>
+</div>
+
+<div class="tool" data-type="text">
+<div class="tool-top"><div class="tool-icon">🌐</div><span class="tool-tag">TEXT</span></div>
+<h3>AI Translator</h3>
+<p>ترجمة النصوص إلى لغات متعددة.</p>
+<button onclick="openTool('الترجمة الذكية')">فتح الأداة ←</button>
+</div>
+
+<div class="tool" data-type="text">
+<div class="tool-top"><div class="tool-icon">🤖</div><span class="tool-tag">AI</span></div>
+<h3>AI Chat Assistant</h3>
+<p>مساعد ذكي للمحادثة وتوليد الأفكار.</p>
+<button onclick="openTool('المساعد الذكي')">فتح الأداة ←</button>
+</div>
+
+<div class="tool" data-type="image">
+<div class="tool-top"><div class="tool-icon">💎</div><span class="tool-tag">DESIGN</span></div>
+<h3>AI Logo Maker</h3>
+<p>تصميم أفكار وشعارات للعلامات التجارية.</p>
+<button onclick="openTool('تصميم الشعارات')">فتح الأداة ←</button>
+</div>
+
+<div class="tool" data-type="video">
+<div class="tool-top"><div class="tool-icon">🎞️</div><span class="tool-tag">VIDEO</span></div>
+<h3>AI Video Editor</h3>
+<p>أفكار لتحرير ومونتاج الفيديوهات.</p>
+<button onclick="openTool('تحرير الفيديو')">فتح الأداة ←</button>
+</div>
+
+<div class="tool" data-type="audio">
+<div class="tool-top"><div class="tool-icon">🎙️</div><span class="tool-tag">AUDIO</span></div>
+<h3>AI Voice Studio</h3>
+<p>تحويل النصوص إلى أفكار صوتية.</p>
+<button onclick="openTool('استوديو الصوت')">فتح الأداة ←</button>
+</div>
+
+<div class="tool" data-type="image">
+<div class="tool-top"><div class="tool-icon">🖼️</div><span class="tool-tag">DESIGN</span></div>
+<h3>AI Poster Designer</h3>
+<p>تصميم ملصقات وإعلانات احترافية.</p>
+<button onclick="openTool('تصميم الملصقات')">فتح الأداة ←</button>
+</div>
+
+<div class="tool" data-type="text">
+<div class="tool-top"><div class="tool-icon">💻</div><span class="tool-tag">CODE</span></div>
+<h3>AI Code Assistant</h3>
+<p>مساعدة في كتابة الأكواد وتصحيحها.</p>
+<button onclick="openTool('مساعد البرمجة')">فتح الأداة ←</button>
+</div>
+
+<div class="tool" data-type="edit">
+<div class="tool-top"><div class="tool-icon">✨</div><span class="tool-tag">ENHANCE</span></div>
+<h3>AI Photo Enhancer</h3>
+<p>تحسين الإضاءة والألوان وجودة الصور.</p>
+<button onclick="openTool('تحسين الصور')">فتح الأداة ←</button>
+</div>
+
+</div>
+</section>
+
+<!-- WORKSPACE -->
+
+<section class="workspace" id="workspace">
+
+<h2 id="workspaceTitle">✦ مساحة العمل الذكية</h2>
+
+<p class="description">
+اختر الأداة، واكتب وصفك، وارفع الصورة عند الحاجة.
+</p>
+
+<label class="field-label">الأداة المختارة</label>
+<select id="toolSelect" onchange="changeTool()">
+<option>توليد الصور</option>
+<option>تعديل الصور</option>
+<option>توليد الفيديو</option>
+<option>إزالة الخلفية</option>
+<option>تحسين دقة الصور</option>
+<option>الصور الشخصية</option>
+<option>الكتابة الذكية</option>
+<option>الترجمة الذكية</option>
+<option>المساعد الذكي</option>
+<option>تصميم الشعارات</option>
+<option>تحرير الفيديو</option>
+<option>استوديو الصوت</option>
+<option>تصميم الملصقات</option>
+<option>مساعد البرمجة</option>
+<option>تحسين الصور</option>
+</select>
+
+<label class="field-label">اكتب وصفك أو تعليماتك</label>
+
+<textarea id="prompt" placeholder="اكتب هنا بالتفصيل ما تريد أن يصنعه الذكاء الاصطناعي..."></textarea>
+
+<label class="upload">
+📁 اضغط هنا لرفع صورة من هاتفك
+<input type="file" id="fileInput" accept="image/*">
+</label>
+
+<img id="preview" class="preview">
+
+<div class="workspace-actions">
+<button class="primary" onclick="prepareRequest()">تجهيز الطلب ✦</button>
+<button class="secondary" onclick="copyPrompt()">نسخ الوصف</button>
+</div>
+
+<div class="result" id="result"></div>
+
+</section>
+
+<!-- GALLERY -->
+
+<section class="section" id="gallery">
+
+<div class="section-head">
+<h2>معرض أعمالي</h2>
+<span>MY CREATIONS</span>
+</div>
+
+<div class="gallery">
+<p>ستظهر هنا الصور التي تضيفها إلى المعرض في المراحل القادمة، بعد ربط محركات التوليد الحقيقية.</p>
+<div class="gallery-grid" id="galleryGrid"></div>
+</div>
+
+</section>
+
+<footer>
+<strong>HESHAM AI STUDIO</strong>
+<br><br>
+Your Vision. Powered by Intelligence.
+<br><br>
+© 2026 HESHAM AI. All rights reserved.
+</footer>
+
+</main>
+</div>
+
+<script>
+
+// اختيار الأداة
+
+function openTool(name){
+
+document.getElementById('workspace').classList.add('show');
+
+document.getElementById('toolSelect').value=name;
+document.getElementById('workspaceTitle').innerText='✦ '+name;
+
+document.getElementById('workspace')
+.scrollIntoView({behavior:'smooth'});
+
+}
+
+// تغيير الأداة
+
+function changeTool(){
+
+let name=document.getElementById('toolSelect').value;
+
+document.getElementById('workspaceTitle').innerText='✦ '+name;
+
+}
+
+// تصنيف الأدوات
+
+function filterTools(type,btn){
+
+document.querySelectorAll('.filter').forEach(b=>{
+b.classList.remove('active');
+});
+
+btn.classList.add('active');
+
+document.querySelectorAll('.tool').forEach(card=>{
+
+card.style.display=
+type==='all'||card.dataset.type===type
+?'block':'none';
+
+});
+
+}
+
+// البحث
+
+function searchTools(){
+
+let value=document.getElementById('search')
+.value.trim().toLowerCase();
+
+document.querySelectorAll('.tool').forEach(card=>{
+
+card.style.display=
+card.innerText.toLowerCase().includes(value)
+?'block':'none';
+
+});
+
+}
+
+document.getElementById('search')
+.addEventListener('input',searchTools);
+
+// معاينة الصورة
+
+document.getElementById('fileInput')
+.addEventListener('change',function(){
+
+let file=this.files[0];
+
+if(!file)return;
+
+if(!file.type.startsWith('image/')){
+alert('يرجى اختيار صورة صالحة');
+return;
+}
+
+let preview=document.getElementById('preview');
+
+if(preview.dataset.url){
+URL.revokeObjectURL(preview.dataset.url);
+}
+
+let url=URL.createObjectURL(file);
+
+preview.src=url;
+preview.dataset.url=url;
+preview.style.display='block';
+
+});
+
+// تجهيز طلب الذكاء الاصطناعي
+
+function prepareRequest(){
+
+let prompt=document.getElementById('prompt').value.trim();
+let tool=document.getElementById('toolSelect').value;
+let file=document.getElementById('fileInput').files[0];
+
+if(!prompt&&!file){
+alert('اكتب وصفاً أو ارفع صورة أولاً');
+return;
+}
+
+let result=document.getElementById('result');
+
+result.style.display='block';
+
+result.innerHTML=
+'<strong>HESHAM AI STUDIO</strong><br>'+
+'الأداة: '+tool+
+'<br>تم تجهيز بيانات طلبك في الواجهة بنجاح.'+
+'<br><br>هذه النسخة لا تزال تحتاج إلى ربط محرك الذكاء الاصطناعي الحقيقي حتى تنتج الصور أو الفيديوهات أو تنفذ التعديلات.';
+
+}
+
+// نسخ الوصف
+
+function copyPrompt(){
+
+let prompt=document.getElementById('prompt').value;
+
+if(!prompt.trim()){
+alert('اكتب الوصف أولاً');
+return;
+}
+
+if(navigator.clipboard){
+navigator.clipboard.writeText(prompt)
+.then(()=>alert('تم نسخ الوصف'))
+.catch(()=>alert('تعذر النسخ من المتصفح'));
+}else{
+alert('النسخ غير مدعوم في هذا المتصفح');
+}
+
+}
+
+</script>
+
+</body>
+</html>
